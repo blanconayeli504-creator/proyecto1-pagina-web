@@ -1,0 +1,249 @@
+/* 1. RESET GENERAL */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 2. COLORES Y VARIABLES */
+:root {
+    --color-principal: #a65b32;
+    --color-acento: #c87941;
+    --color-texto: #2f2a29;
+    --color-suave: #e6d7c3;
+    --color-fondo: #fbf8f5;
+    --color-superficie: #ffffff;
+    --borde: #d5c7b8;
+
+    --espacio: 1rem;
+    --espacio-lg: 2rem;
+    --radio: 4px;
+}
+
+/* 3. TIPOGRAFÍA Y FONDO */
+body {
+    margin: 0;
+    padding: 0 var(--espacio);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-texto);
+    background: var(--color-fondo);
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+    color: var(--color-principal);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: var(--espacio-lg);
+}
+
+h3 {
+    font-size: 1.15rem;
+}
+
+p {
+    max-width: 65ch;
+}
+
+/* 4. ENLACES */
+a {
+    color: var(--color-principal);
+    text-underline-offset: 2px;
+}
+
+a:hover {
+    color: var(--color-acento);
+}
+
+a:focus-visible {
+    outline: 3px solid var(--color-acento);
+    outline-offset: 2px;
+}
+
+/* 5. ENCABEZADO Y TÍTULO CENTRADO */
+header {
+    padding: var(--espacio-lg) var(--espacio);
+    border-bottom: 3px solid var(--color-principal);
+    margin-bottom: var(--espacio-lg);
+    text-align: center;
+}
+
+header h1 {
+    margin-top: 0;
+    text-align: center;
+}
+
+header p {
+    max-width: none;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* 6. BOTONES DE NAVEGACIÓN EN LA PARTE SUPERIOR */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav li {
+    margin-bottom: 0;
+}
+
+nav a {
+    display: inline-block;
+    background-color: var(--color-principal);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: var(--color-acento);
+    color: #ffffff;
+}
+
+/* 7. PRODUCTOS */
+article {
+    background: var(--color-superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: var(--espacio);
+    margin-bottom: var(--espacio);
+}
+
+/* 8. TABLA DE PRECIOS */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 40rem;
+    background: var(--color-superficie);
+}
+
+caption {
+    text-align: left;
+    color: var(--color-texto);
+    padding-bottom: 0.5rem;
+}
+
+th, td {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--borde);
+}
+
+th {
+    background: var(--color-principal);
+    color: #ffffff;
+}
+
+/* 9. FORMULARIO */
+fieldset {
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: var(--espacio);
+    margin-bottom: var(--espacio);
+    max-width: 32rem;
+}
+
+legend {
+    padding: 0 0.4rem;
+    font-weight: 600;
+    color: var(--color-principal);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+input, select, textarea {
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 0.5rem;
+    width: 100%;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+button {
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 0.6rem 1.2rem;
+    min-height: 44px;
+    background: var(--color-principal);
+    color: #ffffff;
+    border: 0;
+    border-radius: var(--radio);
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--color-acento);
+}
+
+/* 10. IMÁGENES */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 11. PIE DE PÁGINA */
+footer {
+    margin-top: var(--espacio-lg);
+    padding: var(--espacio-lg) var(--espacio);
+    border-top: 1px solid var(--borde);
+    color: var(--color-texto);
+}
+
+/* 12. ADAPTACIÓN A CELULARES */
+@media (max-width: 600px) {
+    body {
+        padding: 0 10px;
+    }
+
+    header {
+        padding: 1.5rem 0.5rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    nav ul {
+        gap: 8px;
+    }
+
+    nav a {
+        padding: 9px 12px;
+        font-size: 0.9rem;
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+
+    th, td {
+        padding: 0.5rem 0.3rem;
+    }
+}

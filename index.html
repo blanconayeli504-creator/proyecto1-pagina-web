@@ -1,164 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="clexport"content="width=device-width, initial-scale-1.0">
-        <meta name="description"contet="Microempresa dedicada a la elaboración y venta de gomitas artesanales">
-        <title>Dulce Nube Leonel</title>
-    </head>
-    <body>
-            <header> 
-                <h1>Dulce Nube Leonel<h1>
-                    <p>Gomitas artesanales desde 2010<p>
-                    <nav>
-                        <ul>
-                            <li><a href="#nuestras gomitas">Nuestras Gomitas</a></li>
-                            <li><a href="#horarios">Horarios</a></li>
-                            <li><a href="contacto">Contacto</a></li>
-            </header>
-            <main>
-                <section id="nuestras gomitas">
-                    <h2>Nuestros Gomitas</h2>
-                    <article> 
-                        <h3>Gomitas Ácidode frutos Rojos</h3>
-                        <p>Elavoradas artesanalmente con extracto natural de frutilla y un toque de ácido</p>
-                    </article>    
-                    
-                    <article>
-                        <h3>Gomitas de Maracuya</h3>
-                        <p>Nuestra receta tradicional con pulpa de fruta y textura suave</p>
-                    </article>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microempresa dedicada a la elaboración y venta de gomitas artesanales">
+    <title>Dulce Nube Leonel</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
 
-                    <article>
-                        <h3>Mix Artesanal Grande</h3>
-                        <p>Una gran variedad de nuestras mejores gomitas frutales con textura sueve y sabores intensos</p>
-                    </article>
-                </section>
+<body>
 
-                <section id="horarios">
-                    <h2>Horarios de Atención</h2>
-                    <p>Lunes a Sábado: 09:00 a.m. -06:00 p.m.</p>
-                </section>
-                
-                <section id="contacto">
-                    <h2>Contacto</h2>
-                    <p>Haz tus pedidos directamente por WhatsApp al número de Leonel</p>
-                </section>
+    <header>
+        <h1>Dulce Nube Leonel</h1>
+        <p>Gomitas artesanales desde 2010</p>
 
-                <section id="horarios">
-        <h2>Horarios y precios</h2>
-        <table>
-          <caption>Precios por producto y disponibilidad</caption>
-          <thead>
-            <tr>
-              <th scope="col">Producto</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Disponible</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Gomitas de Maracuyá</td>   <td>Bs 5.00</td>  <td>Todos los días</td></tr>
-            <tr><td>Gomitas Ácidas de Frutilla</td>  <td>Bs 6.00</td>  <td>Todos los días</td></tr>
-            <tr><td>Mix Artesanal Grande</td>  <td>Bs 15.00</td> <td>Lunes y jueves</td></tr>
-          </tbody>
-        </table>
+        <nav>
+            <ul>
+                <li><a href="#nuestras-gomitas">Nuestras Gomitas</a></li>
+                <li><a href="#horarios">Horarios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-         <figure>
-          <img src="gomitas.jpg"
-               alt="Vitrina con panes recién horneados ordenados en bandejas"
-               width="600" height="400">
-          <figcaption>La vitrina a primera hora de la mañana.</figcaption>
-        </figure>
+    <main>
 
+        <section id="nuestras-gomitas">
+            <h2>Nuestras Gomitas</h2>
 
-         <section id="pedido">
-        <h2>Hacer un pedido</h2>
+            <article>
+                <h3>Gomitas Ácidas de Frutos Rojos</h3>
+                <p>Elaboradas artesanalmente con extracto natural de frutilla y un toque de ácido.</p>
+            </article>
 
-        <form action="/pedido" method="post">
+            <article>
+                <h3>Gomitas de Maracuyá</h3>
+                <p>Nuestra receta tradicional con pulpa de fruta y textura suave.</p>
+            </article>
 
-          <fieldset>
-            <legend>Tus datos</legend>
+            <article>
+                <h3>Mix Artesanal Grande</h3>
+                <p>Una gran variedad de nuestras mejores gomitas frutales con textura suave y sabores intensos.</p>
+            </article>
+        </section>
 
-            <p>
-              <label for="nombre">Nombre completo</label>
+        <section id="horarios">
+            <h2>Horarios de Atención</h2>
+            <p>Lunes a Sábado: 09:00 a.m. - 06:00 p.m.</p>
+        </section>
 
-              <input type="text" id="nombre" name="nombre"
-                     autocomplete="name" required>
-            </p>
+        <section id="precios">
+            <h2>Horarios y precios</h2>
 
-            <p>
-              <label for="email">Correo electrónico</label>
-              <input type="email" id="email" name="email"
-                     autocomplete="email" required>
-            </p>
+            <table>
+                <caption>Precios por producto y disponibilidad</caption>
 
-            <p>
-              <label for="telefono">Teléfono</label>
+                <thead>
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Disponible</th>
+                    </tr>
+                </thead>
 
-              <input type="tel" id="telefono" name="telefono"
-                     autocomplete="tel" pattern="[0-9]{7,8}"
-                     title="7 u 8 dígitos, sin espacios">
-            </p>
-          </fieldset>
+                <tbody>
+                    <tr>
+                        <td>Gomitas de Maracuyá</td>
+                        <td>Bs 5.00</td>
+                        <td>Todos los días</td>
+                    </tr>
 
-          <fieldset>
-            <legend>Tu pedido</legend>
+                    <tr>
+                        <td>Gomitas Ácidas de Frutilla</td>
+                        <td>Bs 6.00</td>
+                        <td>Todos los días</td>
+                    </tr>
 
-            <p>
-              <label for="producto">Producto</label>
+                    <tr>
+                        <td>Mix Artesanal Grande</td>
+                        <td>Bs 15.00</td>
+                        <td>Lunes y jueves</td>
+                    </tr>
+                </tbody>
+            </table>
 
-              <select id="producto" name="producto" required>
-                <option value="">Elige uno</option>
-                <option value="maracuya">Gomitas de Maracuyá</option>
-                <option value="frutilla">Gomitas Ácidas de Frutilla</option>
-                <option value="mix">Mix Artesanal Grande</option>
-              </select>
-            </p>
+            <figure>
+                <img src="gomitas.jpg"
+                     alt="Gomitas artesanales de diferentes sabores"
+                     width="600" height="400">
+                <figcaption>Nuestras deliciosas gomitas artesanales.</figcaption>
+            </figure>
+        </section>
 
-            <p>
-              <label for="cantidad">Cantidad</label>
-              <input type="number" id="cantidad" name="cantidad"
-                     min="1" max="100" value="1" required>
-            </p>
+        <section id="pedido">
+            <h2>Hacer un pedido</h2>
 
-            <p>
-              <label for="fecha">Fecha de entrega</label>
-              <input type="date" id="fecha" name="fecha" required>
-            </p>
+            <form action="/pedido" method="post">
 
-            <p>
-              <label for="notas">Alguna indicación</label>
-              <textarea id="notas" name="notas" rows="3"></textarea>
-            </p>
+                <fieldset>
+                    <legend>Tus datos</legend>
 
-            <p>
+                    <p>
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre"
+                               autocomplete="name" required>
+                    </p>
 
-              <input type="checkbox" id="terminos" name="terminos" required>
-              <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
-            </p>
-          </fieldset>
+                    <p>
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email"
+                               autocomplete="email" required>
+                    </p>
 
-          <button type="submit">Enviar pedido</button>
-        </form>
-      </section>
+                    <p>
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono"
+                               autocomplete="tel" pattern="[0-9]{7,8}"
+                               title="7 u 8 dígitos, sin espacios">
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Tu pedido</legend>
+
+                    <p>
+                        <label for="producto">Producto</label>
+                        <select id="producto" name="producto" required>
+                            <option value="">Elige uno</option>
+                            <option value="maracuya">Gomitas de Maracuyá</option>
+                            <option value="frutilla">Gomitas Ácidas de Frutilla</option>
+                            <option value="mix">Mix Artesanal Grande</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="cantidad">Cantidad</label>
+                        <input type="number" id="cantidad" name="cantidad"
+                               min="1" max="100" value="1" required>
+                    </p>
+
+                    <p>
+                        <label for="fecha">Fecha de entrega</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </p>
+
+                    <p>
+                        <label for="notas">Alguna indicación</label>
+                        <textarea id="notas" name="notas" rows="3"></textarea>
+                    </p>
+
+                    <p class="aceptar">
+                        <input type="checkbox" id="terminos" name="terminos" required>
+                        <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
+                    </p>
+                </fieldset>
+
+                <button type="submit">Enviar pedido</button>
+            </form>
+        </section>
 
     </main>
- 
 
     <aside>
-      <h2>¿Sabías?</h2>
-      <p>Elaboramos nuestras gomitas artesanales cada día con pulpa de fruta 100% natural.</p>
+        <h2>¿Sabías?</h2>
+        <p>Elaboramos nuestras gomitas artesanales cada día con pulpa de fruta 100% natural.</p>
     </aside>
 
     <footer id="contacto">
-      <h2>Contacto</h2>
-      <address>
-        Av. Camino Viacha<br>
-        Teléfono: <a href="htpp://wa.me/59177541854" target="_blank"></a>
-      </address>
-      <p><small>&copy; 2026 Dulce Nube Leonel</small></p>
+        <h2>Contacto</h2>
+
+        <address>
+            Av. Camino Viacha<br>
+            Teléfono:
+            <a href="https://wa.me/59177541854"
+               target="_blank"
+               rel="noopener noreferrer">77541854</a>
+        </address>
+
+        <p><small>&copy; 2026 Dulce Nube Leonel</small></p>
     </footer>
 
-    </body>
+</body>
 </html>
                      
