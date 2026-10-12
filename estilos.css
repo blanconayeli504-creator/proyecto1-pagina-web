@@ -247,3 +247,23 @@ footer {
         padding: 0.5rem 0.3rem;
     }
 }
+
+/* 13. FLEXBOX DE LA FOTO DE LA CLASE */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: var(--espacio);
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio);
+    margin: 0;
+}
+
+nav li {
+    margin-bottom: 0;
+}
