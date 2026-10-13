@@ -309,3 +309,10 @@ nav li {
   aside  { grid-area: lateral; }
   footer { grid-area: pie; }
 }
+
+/* ── Escalón de tablet ─────────────────────────────────────────────────── */
+@media (min-width: 40rem) {
+  h1     { font-size: 2.5rem; }
+  header { padding-inline: var(--espacio-lg); }
+  nav ul { gap: var(--espacio-lg); }
+}

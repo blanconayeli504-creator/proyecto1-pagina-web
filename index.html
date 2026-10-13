@@ -24,140 +24,145 @@
     </header>
 
     <main>
+        <!-- Inicio del div agregado para agrupar el contenido principal -->
+        <div class="contenido-bloque">
 
-        <section id="nuestras-gomitas">
-            <h2>Nuestras Gomitas</h2>
+            <section id="nuestras-gomitas">
+                <h2>Nuestras Gomitas</h2>
 
-            <article>
-                <h3>Gomitas Ácidas de Frutos Rojos</h3>
-                <p>Elaboradas artesanalmente con extracto natural de frutilla y un toque de ácido.</p>
-            </article>
+                <article>
+                    <h3>Gomitas Ácidas de Frutos Rojos</h3>
+                    <p>Elaboradas artesanalmente con extracto natural de frutilla y un toque de ácido.</p>
+                </article>
 
-            <article>
-                <h3>Gomitas de Maracuyá</h3>
-                <p>Nuestra receta tradicional con pulpa de fruta y textura suave.</p>
-            </article>
+                <article>
+                    <h3>Gomitas de Maracuyá</h3>
+                    <p>Nuestra receta tradicional con pulpa de fruta y textura suave.</p>
+                </article>
 
-            <article>
-                <h3>Mix Artesanal Grande</h3>
-                <p>Una gran variedad de nuestras mejores gomitas frutales con textura suave y sabores intensos.</p>
-            </article>
-        </section>
+                <article>
+                    <h3>Mix Artesanal Grande</h3>
+                    <p>Una gran variedad de nuestras mejores gomitas frutales con textura suave y sabores intensos.</p>
+                </article>
+            </section>
 
-        <section id="horarios">
-            <h2>Horarios de Atención</h2>
-            <p>Lunes a Sábado: 09:00 a.m. - 06:00 p.m.</p>
-        </section>
+            <section id="horarios">
+                <h2>Horarios de Atención</h2>
+                <p>Lunes a Sábado: 09:00 a.m. - 06:00 p.m.</p>
+            </section>
 
-        <section id="precios">
-            <h2>Horarios y precios</h2>
+            <section id="precios">
+                <h2>Horarios y precios</h2>
 
-            <table>
-                <caption>Precios por producto y disponibilidad</caption>
+                <table>
+                    <caption>Precios por producto y disponibilidad</caption>
 
-                <thead>
-                    <tr>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Disponible</th>
-                    </tr>
-                </thead>
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Disponible</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <tr>
-                        <td>Gomitas de Maracuyá</td>
-                        <td>Bs 5.00</td>
-                        <td>Todos los días</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>Gomitas de Maracuyá</td>
+                            <td>Bs 5.00</td>
+                            <td>Todos los días</td>
+                        </tr>
 
-                    <tr>
-                        <td>Gomitas Ácidas de Frutilla</td>
-                        <td>Bs 6.00</td>
-                        <td>Todos los días</td>
-                    </tr>
+                        <tr>
+                            <td>Gomitas Ácidas de Frutilla</td>
+                            <td>Bs 6.00</td>
+                            <td>Todos los días</td>
+                        </tr>
 
-                    <tr>
-                        <td>Mix Artesanal Grande</td>
-                        <td>Bs 15.00</td>
-                        <td>Lunes y jueves</td>
-                    </tr>
-                </tbody>
-            </table>
+                        <tr>
+                            <td>Mix Artesanal Grande</td>
+                            <td>Bs 15.00</td>
+                            <td>Lunes y jueves</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <figure>
-                <img src="gomitas.jpg"
-                     alt="Gomitas artesanales de diferentes sabores"
-                     width="600" height="400">
-                <figcaption>Nuestras deliciosas gomitas artesanales.</figcaption>
-            </figure>
-        </section>
+                <figure>
+                    <img src="gomitas.jpg"
+                         alt="Gomitas artesanales de diferentes sabores"
+                         width="600" height="400">
+                    <figcaption>Nuestras deliciosas gomitas artesanales.</figcaption>
+                </figure>
+            </section>
 
-        <section id="pedido">
-            <h2>Hacer un pedido</h2>
+            <section id="pedido">
+                <h2>Hacer un pedido</h2>
 
-            <form action="/pedido" method="post">
+                <form action="/pedido" method="post">
 
-                <fieldset>
-                    <legend>Tus datos</legend>
+                    <fieldset>
+                        <legend>Tus datos</legend>
 
-                    <p>
-                        <label for="nombre">Nombre completo</label>
-                        <input type="text" id="nombre" name="nombre"
-                               autocomplete="name" required>
-                    </p>
+                        <p>
+                            <label for="nombre">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre"
+                                   autocomplete="name" required>
+                        </p>
 
-                    <p>
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" name="email"
-                               autocomplete="email" required>
-                    </p>
+                        <p>
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email"
+                                   autocomplete="email" required>
+                        </p>
 
-                    <p>
-                        <label for="telefono">Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono"
-                               autocomplete="tel" pattern="[0-9]{7,8}"
-                               title="7 u 8 dígitos, sin espacios">
-                    </p>
-                </fieldset>
+                        <p>
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono"
+                                   autocomplete="tel" pattern="[0-9]{7,8}"
+                                   title="7 u 8 dígitos, sin espacios">
+                        </p>
+                    </fieldset>
 
-                <fieldset>
-                    <legend>Tu pedido</legend>
+                    <fieldset>
+                        <legend>Tu pedido</legend>
 
-                    <p>
-                        <label for="producto">Producto</label>
-                        <select id="producto" name="producto" required>
-                            <option value="">Elige uno</option>
-                            <option value="maracuya">Gomitas de Maracuyá</option>
-                            <option value="frutilla">Gomitas Ácidas de Frutilla</option>
-                            <option value="mix">Mix Artesanal Grande</option>
-                        </select>
-                    </p>
+                        <p>
+                            <label for="producto">Producto</label>
+                            <select id="producto" name="producto" required>
+                                <option value="">Elige uno</option>
+                                <option value="maracuya">Gomitas de Maracuyá</option>
+                                <option value="frutilla">Gomitas Ácidas de Frutilla</option>
+                                <option value="mix">Mix Artesanal Grande</option>
+                            </select>
+                        </p>
 
-                    <p>
-                        <label for="cantidad">Cantidad</label>
-                        <input type="number" id="cantidad" name="cantidad"
-                               min="1" max="100" value="1" required>
-                    </p>
+                        <p>
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" id="cantidad" name="cantidad"
+                                   min="1" max="100" value="1" required>
+                        </p>
 
-                    <p>
-                        <label for="fecha">Fecha de entrega</label>
-                        <input type="date" id="fecha" name="fecha" required>
-                    </p>
+                        <p>
+                            <label for="fecha">Fecha de entrega</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </p>
 
-                    <p>
-                        <label for="notas">Alguna indicación</label>
-                        <textarea id="notas" name="notas" rows="3"></textarea>
-                    </p>
+                        <p>
+                            <label for="notas">Alguna indicación</label>
+                            <textarea id="notas" name="notas" rows="3"></textarea>
+                        </p>
 
-                    <p class="aceptar">
-                        <input type="checkbox" id="terminos" name="terminos" required>
-                        <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
-                    </p>
-                </fieldset>
+                        <p class="aceptar">
+                            <input type="checkbox" id="terminos" name="terminos" required>
+                            <label for="terminos">Acepto que el pedido se confirma por teléfono</label>
+                        </p>
+                    </fieldset>
 
-                <button type="submit">Enviar pedido</button>
-            </form>
-        </section>
+                    <button type="submit">Enviar pedido</button>
+                </form>
+            </section>
+
+        </div>
+        <!-- Fin del div agregado -->
 
     </main>
 
@@ -182,4 +187,3 @@
 
 </body>
 </html>
-                     
