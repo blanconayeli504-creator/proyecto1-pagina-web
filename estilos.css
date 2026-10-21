@@ -316,3 +316,46 @@ nav li {
   header { padding-inline: var(--espacio-lg); }
   nav ul { gap: var(--espacio-lg); }
 }
+
+#productos {
+  display: block;
+}
+
+#lista-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--espacio);
+  align-items: start;
+}
+
+.tarjeta {
+  background: var(--color-superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: var(--espacio);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.tarjeta h3 { margin: 0; }
+
+.precio {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-acento);
+  margin: 0;
+}
+
+.stock {
+  margin: 0;
+  color: var(--color-suave);
+  font-size: 0.9rem;
+}
+
+.agotado {
+  background: var(--color-fondo);
+}
+.agotado .precio {
+  text-decoration: line-through;
+}
+
