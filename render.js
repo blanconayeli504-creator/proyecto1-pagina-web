@@ -32,10 +32,31 @@ function crearTarjeta(producto) {
 
   articulo.dataset.nombre = producto.nombre;
 
+  // Etiqueta de estado según el stock (pocas unidades / agotado)
+  const pocasUnidades = producto.disponible && producto.stock <= 5;
+  const etiqueta = !producto.disponible
+    ? `<span class="etiqueta etiqueta-agotado">Agotado</span>`
+    : pocasUnidades
+      ? `<span class="etiqueta etiqueta-poco">¡Últimas unidades!</span>`
+      : `<span class="etiqueta">${producto.categoria}</span>`;
+
+  const imagen = producto.imagen
+    ? `<img src="${producto.imagen}" alt="${producto.nombre}" width="320" height="320" loading="lazy">`
+    : "";
+
   articulo.innerHTML = `
-    <h3>${producto.nombre}</h3>
-    <p class="precio">Bs ${producto.precio.toFixed(2)}</p>
-    <p class="stock">${producto.disponible ? `${producto.stock} en stock` : "Agotado"}</p>
+    <div class="tarjeta-imagen">
+      ${imagen}
+      ${etiqueta}
+    </div>
+    <div class="tarjeta-cuerpo">
+      <h3>${producto.nombre}</h3>
+      <p class="precio">Bs ${producto.precio.toFixed(2)}</p>
+      <p class="stock">${producto.disponible ? `${producto.stock} en stock` : "Agotado"}</p>
+      ${producto.disponible
+        ? `<a class="btn-pedir" href="#pedido" data-producto="${producto.nombre}">Pedir ahora</a>`
+        : `<span class="btn-pedir btn-deshabilitado" aria-disabled="true">No disponible</span>`}
+    </div>
   `;
 
   return articulo;
@@ -50,7 +71,7 @@ function render(lista) {
 
   // Si no hay productos pasados o la lista está vacía
   if (!lista || lista.length === 0) {
-    contenedor.innerHTML += "<p>No hay productos que mostrar por el momento.</p>";
+    contenedor.innerHTML += "<p class=\"sin-resultados\">No hay productos que mostrar por el momento.</p>";
     return;
   }
 

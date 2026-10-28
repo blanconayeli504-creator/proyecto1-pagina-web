@@ -1,48 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Microempresa dedicada a la elaboración y venta de gomitas artesanales">
-    <title>Dulce Nube Leonel</title>
+    <meta name="theme-color" content="#a65b32">
+    <meta property="og:title" content="Dulce Nube Leonel - Gomitas artesanales">
+    <meta property="og:description" content="Gomitas artesanales de pulpa natural. Mira el catálogo y haz tu pedido en línea.">
+    <meta property="og:image" content="img/min/mix_artesanal.jpg">
+    <title>Dulce Nube Leonel | Gomitas artesanales en La Paz</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%AC%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
+    <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
     <header>
         <h1>Dulce Nube Leonel</h1>
         <p>Gomitas artesanales desde 2010</p>
+        <a class="btn-hero" href="#pedido">Hacer un pedido</a>
 
         <nav>
             <ul>
                 <li><a href="#nuestras-gomitas">Nuestras Gomitas</a></li>
                 <li><a href="#horarios">Horarios</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#panel">Panel y Novedades</a></li>
+                <li><a href="#comparativa">Comparativa jQuery</a></li>
+                <li><a href="#remoto">Catálogo Remoto</a></li>
+                <li><a href="#pedido">Hacer Pedido</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
+
+            <!-- Botón y Menú Desplegable gestionados por jquery-panel.js -->
+            <div class="contenedor-menu-movil">
+                <button type="button" id="menu-toggle" aria-expanded="false" class="btn-menu-toggle">☰ Menú
+                    Rápido</button>
+                <div id="menu-movil" class="menu-movil-desplegable" style="display: none;">
+                    <ul>
+                        <li><a href="#nuestras-gomitas">Nuestras Gomitas</a></li>
+                        <li><a href="#horarios">Horarios</a></li>
+                        <li><a href="#precios">Precios</a></li>
+                        <li><a href="#panel">Panel y Novedades</a></li>
+                        <li><a href="#comparativa">Comparativa jQuery</a></li>
+                        <li><a href="#remoto">Catálogo Remoto</a></li>
+                        <li><a href="#pedido">Hacer Pedido</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main>
+    <main id="contenido">
         <!-- Inicio del div agregado para agrupar el contenido principal -->
         <div class="contenido-bloque">
+
+            <!-- CONTROLES DE BÚSQUEDA Y FILTROS (gestionados por eventos.js) -->
+            <div class="controles-busqueda">
+                <input type="text" id="buscador" placeholder="Buscar gomita por nombre...">
+                <div id="filtros">
+                    <button type="button" class="activo" data-categoria="todos">Todos</button>
+                    <button type="button" data-categoria="frutales">Frutales</button>
+                    <button type="button" data-categoria="acidas">Ácidas</button>
+                    <button type="button" data-categoria="mixes">Mixes</button>
+                    <button type="button" data-categoria="picantes">Picantes</button>
+                    <button type="button" data-categoria="especiales">Especiales</button>
+                </div>
+                <p id="resultado"></p>
+            </div>
+            <!-- FIN DE CONTROLES -->
 
             <section id="nuestras-gomitas">
                 <h2>Nuestras Gomitas</h2>
 
-                <article>
-                    <h3>Gomitas Ácidas de Frutos Rojos</h3>
-                    <p>Elaboradas artesanalmente con extracto natural de frutilla y un toque de ácido.</p>
+                <article class="tarjeta">
+                    <h3>Gomitas Ácidas de Frutilla</h3>
+                    <p class="precio">Bs 6.00</p>
+                    <p class="stock">25 en stock</p>
                 </article>
 
-                <article>
+                <article class="tarjeta">
                     <h3>Gomitas de Maracuyá</h3>
-                    <p>Nuestra receta tradicional con pulpa de fruta y textura suave.</p>
+                    <p class="precio">Bs 5.00</p>
+                    <p class="stock">40 en stock</p>
                 </article>
 
-                <article>
+                <article class="tarjeta">
                     <h3>Mix Artesanal Grande</h3>
-                    <p>Una gran variedad de nuestras mejores gomitas frutales con textura suave y sabores intensos.</p>
+                    <p class="precio">Bs 15.00</p>
+                    <p class="stock">8 en stock</p>
                 </article>
             </section>
 
@@ -52,7 +102,7 @@
             </section>
 
             <section id="precios">
-                <h2>Horarios y precios</h2>
+                <h2>Precios</h2>
 
                 <table>
                     <caption>Precios por producto y disponibilidad</caption>
@@ -83,15 +133,130 @@
                             <td>Bs 15.00</td>
                             <td>Lunes y jueves</td>
                         </tr>
+
+                        <tr>
+                            <td>Gomitas de Mango con Chili</td>
+                            <td>Bs 7.00</td>
+                            <td>Todos los días</td>
+                        </tr>
+
+                        <tr>
+                            <td>Paleta de Gomita Gigante</td>
+                            <td>Bs 12.00</td>
+                            <td>Todos los días</td>
+                        </tr>
+
+                        <tr>
+                            <td>Gomitas de Limón Ácido</td>
+                            <td>Bs 5.50</td>
+                            <td>Todos los días</td>
+                        </tr>
+
+                        <tr>
+                            <td>Gomitas de Arándano</td>
+                            <td>Bs 6.50</td>
+                            <td class="td-agotado">Agotado</td>
+                        </tr>
+
+                        <tr>
+                            <td>Bolsita Mini Surtida</td>
+                            <td>Bs 3.50</td>
+                            <td class="td-agotado">Agotado</td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <figure>
-                    <img src="gomitas.jpg"
-                         alt="Gomitas artesanales de diferentes sabores"
-                         width="600" height="400">
+                    <img src="img/min/gomitas.jpg" alt="Gomitas artesanales de diferentes sabores" width="640" height="640" loading="lazy">
                     <figcaption>Nuestras deliciosas gomitas artesanales.</figcaption>
                 </figure>
+            </section>
+
+            <!-- SECCIÓN PANEL INTERACTIVO (gestionada por jquery-panel.js) -->
+            <section id="panel" class="seccion-panel">
+                <h2>Panel de Novedades y Preguntas Frecuentes</h2>
+                <p>Descubre promociones exclusivas y respuestas a preguntas comunes sobre nuestras gomitas artesanales.
+                </p>
+
+                <!-- Avisos con animación escalonada (.each() + delay + fadeIn/fadeOut) -->
+                <div class="bloque-avisos">
+                    <button type="button" id="mostrar-avisos">Mostrar avisos</button>
+                    <ul id="avisos">
+                        <li style="display: none;">🎉 ¡Viernes dulce! 2x1 en Gomitas de Maracuyá para pedidos en tienda.
+                        </li>
+                        <li style="display: none;">📦 Envíos a domicilio en La Paz y El Alto con empaque hermético
+                            garantizado.</li>
+                        <li style="display: none;">🥭 ¡Nuevo sabor! Gomitas artesanales de Mango con un toque picante de
+                            Chili.</li>
+                    </ul>
+                </div>
+
+                <!-- Acordeón interactivo (.slideToggle() + aria-expanded) -->
+                <div id="acordeon">
+                    <div class="item-acordeon">
+                        <button type="button" class="titulo" aria-expanded="false">¿Cómo se elaboran nuestras gomitas
+                            artesanales?</button>
+                        <div class="cuerpo" style="display: none;">
+                            <p>Utilizamos pulpa de fruta 100% natural, sin colorantes artificiales ni aditivos
+                                agresivos. Cada lote se elabora con cuidado artesanal preservando el sabor y textura
+                                suave.</p>
+                        </div>
+                    </div>
+
+                    <div class="item-acordeon">
+                        <button type="button" class="titulo" aria-expanded="false">¿Cómo se confirma y entrega un
+                            pedido?</button>
+                        <div class="cuerpo" style="display: none;">
+                            <p>Al enviar el formulario, nuestro equipo se contacta de inmediato contigo por teléfono o
+                                WhatsApp para confirmar cantidades, horario y dirección de entrega.</p>
+                        </div>
+                    </div>
+
+                    <div class="item-acordeon">
+                        <button type="button" class="titulo" aria-expanded="false">¿Cuáles son los métodos de pago
+                            disponibles?</button>
+                        <div class="cuerpo" style="display: none;">
+                            <p>Aceptamos pagos en efectivo contra entrega, transferencias bancarias mediante código QR y
+                                pagos móviles sin costo adicional.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN COMPARATIVA VANILLA JS VS JQUERY (gestionada por jquery-comparado.js) -->
+            <section id="comparativa" class="seccion-comparativa">
+                <h2>Comparación: JavaScript Vanilla vs jQuery</h2>
+                <p>Prueba interactiva que demuestra la diferencia de sintaxis entre Vanilla JS y la librería jQuery:</p>
+
+                <div class="panel-comparativo">
+                    <div class="caja-comparativa">
+                        <h3>Manipulación con Vanilla JS</h3>
+                        <p id="salida-vanilla">Texto original en Vanilla JS</p>
+                        <button type="button" id="boton-vanilla">Alternar Resaltado (Vanilla)</button>
+                    </div>
+
+                    <div class="caja-comparativa">
+                        <h3>Manipulación con jQuery</h3>
+                        <p id="salida-jquery">Texto original en jQuery</p>
+                        <button type="button" id="boton-jquery">Alternar Resaltado (jQuery)</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN CATÁLOGO REMOTO (gestionada por remoto.js) -->
+            <section id="remoto" class="seccion-remota">
+                <h2>Carga Remota de Gomitas (Fetch, jQuery y JSON)</h2>
+                <p>Prueba interactiva de consumo asíncrono desde el archivo <code>datos.json</code> con manejo de estados:</p>
+
+                <div class="controles-remotos">
+                    <button type="button" id="cargar-fetch">Cargar con Fetch</button>
+                    <button type="button" id="cargar-jquery">Cargar con jQuery</button>
+                    <button type="button" id="cargar-roto">Probar Error (404)</button>
+                </div>
+
+                <p id="estado" class="estado-remoto info" role="status" aria-live="polite">Presiona un botón para cargar los datos del catálogo remoto.</p>
+
+                <div id="lista-remota" class="galeria-remota"></div>
             </section>
 
             <section id="pedido">
@@ -104,21 +269,18 @@
 
                         <p>
                             <label for="nombre">Nombre completo</label>
-                            <input type="text" id="nombre" name="nombre"
-                                   autocomplete="name" required>
+                            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
                         </p>
 
                         <p>
                             <label for="email">Correo electrónico</label>
-                            <input type="email" id="email" name="email"
-                                   autocomplete="email" required>
+                            <input type="email" id="email" name="email" autocomplete="email" required>
                         </p>
 
                         <p>
                             <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono"
-                                   autocomplete="tel" pattern="[0-9]{7,8}"
-                                   title="7 u 8 dígitos, sin espacios">
+                            <input type="tel" id="telefono" name="telefono" autocomplete="tel" pattern="[0-9]{7,8}"
+                                title="7 u 8 dígitos, sin espacios">
                         </p>
                     </fieldset>
 
@@ -129,16 +291,20 @@
                             <label for="producto">Producto</label>
                             <select id="producto" name="producto" required>
                                 <option value="">Elige uno</option>
-                                <option value="maracuya">Gomitas de Maracuyá</option>
-                                <option value="frutilla">Gomitas Ácidas de Frutilla</option>
-                                <option value="mix">Mix Artesanal Grande</option>
+                                <option value="maracuya">Gomitas de Maracuyá (Bs 5.00)</option>
+                                <option value="frutilla">Gomitas Ácidas de Frutilla (Bs 6.00)</option>
+                                <option value="mix-grande">Mix Artesanal Grande (Bs 15.00)</option>
+                                <option value="arandano" disabled>Gomitas de Arándano (Agotado)</option>
+                                <option value="mango-chili">Gomitas de Mango con Chili (Bs 7.00)</option>
+                                <option value="paleta-gigante">Paleta de Gomita Gigante (Bs 12.00)</option>
+                                <option value="limon-acido">Gomitas de Limón Ácido (Bs 5.50)</option>
+                                <option value="bolsita-mini" disabled>Bolsita Mini Surtida (Agotado)</option>
                             </select>
                         </p>
 
                         <p>
                             <label for="cantidad">Cantidad</label>
-                            <input type="number" id="cantidad" name="cantidad"
-                                   min="1" max="100" value="1" required>
+                            <input type="number" id="cantidad" name="cantidad" min="1" max="100" value="1" required>
                         </p>
 
                         <p>
@@ -159,6 +325,9 @@
 
                     <button type="submit">Enviar pedido</button>
                 </form>
+
+                <!-- Confirmación del pedido (gestionada por eventos.js) -->
+                <div id="mensaje-pedido" role="status" aria-live="polite"></div>
             </section>
 
         </div>
@@ -175,20 +344,30 @@
         <h2>Contacto</h2>
 
         <address>
-            Av. Camino Viacha<br>
+            Av. Camino Viacha, La Paz<br>
+            Lunes a Sábado: 09:00 a.m. - 06:00 p.m.<br>
             Teléfono:
-            <a href="https://wa.me/59177541854"
-               target="_blank"
-               rel="noopener noreferrer">77541854</a>
+            <a href="https://wa.me/59177541854" target="_blank" rel="noopener noreferrer">77541854</a>
         </address>
 
         <p><small>&copy; 2026 Dulce Nube Leonel</small></p>
     </footer>
-    <script src="app.js"></script>
+
+    <!-- Scripts modulares del proyecto -->
+    <!-- <script src="app.js"></script> -->
     <script src="funciones.js"></script>
     <script src="datos.js"></script>
     <script src="render.js"></script>
-    
+    <script src="eventos.js"></script>
+
+    <!-- Librería jQuery y scripts de prácticas con jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Respaldo local: si el CDN falla (sin internet), se carga la copia de la carpeta lib -->
+    <script>window.jQuery || document.write('<script src="lib/jquery-3.6.0.min.js"><\/script>');</script>
+    <script src="jquery-comparado.js"></script>
+    <script src="jquery-panel.js"></script>
+    <script src="remoto.js"></script>
 
 </body>
+
 </html>

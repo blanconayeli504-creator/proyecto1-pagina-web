@@ -101,3 +101,28 @@ const subtitulo = document.querySelector("header p");
 if (subtitulo) {
   subtitulo.textContent = `Gomitas artesanales desde ${anioFundacion} - ¡Quedan ${gomitasEnVitrina} paquetes en tienda!`;
 }
+
+// ── 10. ESTADO DE LA TIENDA (ABIERTO / CERRADO) ─────────────────────────
+// Horario: Lunes a Sábado de 09:00 a 18:00 (hora de Bolivia, sin importar dónde esté el visitante)
+function tiendaAbierta(fecha = new Date()) {
+  const partes = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/La_Paz",
+    weekday: "short",
+    hour: "numeric",
+    hour12: false,
+  }).formatToParts(fecha);
+
+  const dia = partes.find(p => p.type === "weekday").value;
+  const hora = Number(partes.find(p => p.type === "hour").value) % 24;
+
+  return dia !== "Sun" && hora >= 9 && hora < 18;
+}
+
+const seccionHorarios = document.querySelector("#horarios");
+if (seccionHorarios) {
+  const abierto = tiendaAbierta();
+  const avisoTienda = document.createElement("p");
+  avisoTienda.classList.add("estado-tienda", abierto ? "abierto" : "cerrado");
+  avisoTienda.textContent = abierto ? "● Abierto ahora" : "● Cerrado en este momento";
+  seccionHorarios.append(avisoTienda);
+}

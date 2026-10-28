@@ -25,14 +25,14 @@ console.log(paqueteClasico);
 
 // ── 3. ARREGLO DE OBJETOS (Catálogo de 8 productos) ─────────────────────
 const productos = [
-  { nombre: "Gomitas de Maracuyá",        precio: 5.0,  categoria: "frutales",  stock: 40, disponible: true },
-  { nombre: "Gomitas Ácidas de Frutilla", precio: 6.0,  categoria: "acidas",    stock: 25, disponible: true },
-  { nombre: "Mix Artesanal Grande",       precio: 15.0, categoria: "mixes",     stock: 8,  disponible: true },
-  { nombre: "Gomitas de Arándano",        precio: 6.5,  categoria: "frutales",  stock: 0,  disponible: false },
-  { nombre: "Gomitas de Mango con Chili",  precio: 7.0,  categoria: "picantes",  stock: 30, disponible: true },
-  { nombre: "Paleta de Gomita Gigante",   precio: 12.0, categoria: "especiales",stock: 3,  disponible: true },
-  { nombre: "Gomitas de Limón Ácido",     precio: 5.5,  categoria: "acidas",    stock: 45, disponible: true },
-  { nombre: "Bolsita Mini Surtida",       precio: 3.5,  categoria: "mixes",     stock: 0,  disponible: false },
+  { nombre: "Gomitas de Maracuyá",        imagen: "img/min/maracuya.jpg", precio: 5.0,  categoria: "frutales",  stock: 40, disponible: true },
+  { nombre: "Gomitas Ácidas de Frutilla", imagen: "img/min/frutilla.jpg", precio: 6.0,  categoria: "acidas",    stock: 25, disponible: true },
+  { nombre: "Mix Artesanal Grande",       imagen: "img/min/mix_artesanal.jpg", precio: 15.0, categoria: "mixes",     stock: 8,  disponible: true },
+  { nombre: "Gomitas de Arándano",        imagen: "img/min/arandano.jpg", precio: 6.5,  categoria: "frutales",  stock: 0,  disponible: false },
+  { nombre: "Gomitas de Mango con Chili",  imagen: "img/min/mango_chili.jpg", precio: 7.0,  categoria: "picantes",  stock: 30, disponible: true },
+  { nombre: "Paleta de Gomita Gigante",   imagen: "img/min/gomitas.jpg", precio: 12.0, categoria: "especiales",stock: 3,  disponible: true },
+  { nombre: "Gomitas de Limón Ácido",     imagen: "img/min/gomitas.jpg", precio: 5.5,  categoria: "acidas",    stock: 45, disponible: true },
+  { nombre: "Bolsita Mini Surtida",       imagen: "img/min/mix_artesanal.jpg", precio: 3.5,  categoria: "mixes",     stock: 0,  disponible: false },
 ];
 
 // ── 4. LOS MÉTODOS QUE IMPORTAN ─────────────────────────────────────────
