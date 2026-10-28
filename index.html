@@ -32,6 +32,7 @@
                 <li><a href="#comparativa">Comparativa jQuery</a></li>
                 <li><a href="#remoto">Catálogo Remoto</a></li>
                 <li><a href="#pedido">Hacer Pedido</a></li>
+                <li><a href="#preferencias">Preferencias</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
 
@@ -48,6 +49,7 @@
                         <li><a href="#comparativa">Comparativa jQuery</a></li>
                         <li><a href="#remoto">Catálogo Remoto</a></li>
                         <li><a href="#pedido">Hacer Pedido</a></li>
+                        <li><a href="#preferencias">Preferencias</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
@@ -330,6 +332,44 @@
                 <div id="mensaje-pedido" role="status" aria-live="polite"></div>
             </section>
 
+            <!-- SECCIÓN PREFERENCIAS (gestionada por preferencias.js) -->
+            <section id="preferencias" class="seccion-preferencias">
+                <h2>Preferencias del sitio</h2>
+                <p>Tus ajustes se guardan en el navegador y se recuperan la próxima vez que visites la página.</p>
+
+                <!-- Tema oscuro / claro -->
+                <div class="bloque-preferencia">
+                    <h3>🎨 Apariencia</h3>
+                    <button type="button" id="tema-toggle" aria-pressed="false">🌙 Modo oscuro</button>
+                </div>
+
+                <!-- Orden del catálogo -->
+                <div class="bloque-preferencia">
+                    <h3>📋 Orden del catálogo</h3>
+                    <label for="orden">Ordenar gomitas por:</label>
+                    <select id="orden">
+                        <option value="nombre">Nombre (A–Z)</option>
+                        <option value="precio">Precio (menor a mayor)</option>
+                        <option value="categoria">Categoría</option>
+                    </select>
+                </div>
+
+                <!-- Geolocalización -->
+                <div class="bloque-preferencia">
+                    <h3>📍 ¿Dónde estás?</h3>
+                    <p>Calcula la distancia aproximada desde tu ubicación hasta el local.</p>
+                    <button type="button" id="ubicarme">Calcular distancia al local</button>
+                    <p id="estado-ubicacion" role="status" aria-live="polite"></p>
+                </div>
+
+                <!-- Estado y olvidar -->
+                <div class="bloque-preferencia">
+                    <p id="estado-prefs" aria-live="polite"></p>
+                    <p id="visitas-sesion"></p>
+                    <button type="button" id="olvidar">🗑️ Olvidar mis preferencias</button>
+                </div>
+            </section>
+
         </div>
         <!-- Fin del div agregado -->
 
@@ -359,6 +399,7 @@
     <script src="datos.js"></script>
     <script src="render.js"></script>
     <script src="eventos.js"></script>
+    <script src="preferencias.js"></script>
 
     <!-- Librería jQuery y scripts de prácticas con jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

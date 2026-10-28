@@ -1282,3 +1282,120 @@ aside p {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── MODO OSCURO ────────────────────────────────────────────────────────── */
+body.tema-oscuro {
+  --color-principal: #d4855a;
+  --color-acento:    #e09a6e;
+  --color-texto:     #f0e8df;
+  --color-suave:     #3a2820;
+  --color-fondo:     #1a1210;
+  --color-superficie:#271a14;
+  --borde:           #4a3020;
+  --color-oscuro:    #f0d5c0;
+  --color-crema:     #2a1c14;
+  --color-apagado:   #b0a09a;
+  --sombra:          0 4px 18px rgba(0, 0, 0, 0.4);
+  --sombra-fuerte:   0 12px 30px rgba(0, 0, 0, 0.6);
+
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ── SECCIÓN PREFERENCIAS ───────────────────────────────────────────────── */
+.seccion-preferencias {
+  padding: var(--espacio-lg);
+}
+
+.seccion-preferencias h2 {
+  margin-bottom: 0.5rem;
+}
+
+.seccion-preferencias > p {
+  color: var(--color-apagado);
+  margin-bottom: var(--espacio-lg);
+  font-size: 0.95rem;
+}
+
+.bloque-preferencia {
+  background: var(--color-superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: var(--espacio) var(--espacio-lg);
+  margin-bottom: var(--espacio);
+  box-shadow: var(--sombra);
+  transition: box-shadow 0.2s ease;
+}
+
+.bloque-preferencia:hover {
+  box-shadow: var(--sombra-fuerte);
+}
+
+.bloque-preferencia h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--color-principal);
+}
+
+.bloque-preferencia label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--color-apagado);
+}
+
+.bloque-preferencia select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.bloque-preferencia select:focus {
+  outline: 2px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+#estado-prefs,
+#visitas-sesion {
+  font-size: 0.88rem;
+  color: var(--color-apagado);
+  margin-bottom: 0.5rem;
+}
+
+#estado-ubicacion {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+#estado-ubicacion.ok      { color: var(--color-exito); }
+#estado-ubicacion.error   { color: var(--color-error); }
+#estado-ubicacion.cargando { color: var(--color-acento); }
+
+/* Botón Olvidar preferencias */
+#olvidar {
+  background: transparent;
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radio-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+#olvidar:hover {
+  background: var(--color-error);
+  color: #fff;
+}
+
