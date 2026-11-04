@@ -19,6 +19,7 @@
     <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
 
     <header>
+        <button type="button" id="btn-preferencias" class="btn-preferencias" aria-expanded="false" aria-controls="preferencias">⚙️ Preferencias</button>
         <h1>Dulce Nube Leonel</h1>
         <p>Gomitas artesanales desde 2010</p>
         <a class="btn-hero" href="#pedido">Hacer un pedido</a>
@@ -28,11 +29,9 @@
                 <li><a href="#nuestras-gomitas">Nuestras Gomitas</a></li>
                 <li><a href="#horarios">Horarios</a></li>
                 <li><a href="#precios">Precios</a></li>
+                <li><a href="#inventario">Arma tu canasta</a></li>
                 <li><a href="#panel">Panel y Novedades</a></li>
-                <li><a href="#comparativa">Comparativa jQuery</a></li>
-                <li><a href="#remoto">Catálogo Remoto</a></li>
                 <li><a href="#pedido">Hacer Pedido</a></li>
-                <li><a href="#preferencias">Preferencias</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
 
@@ -45,17 +44,46 @@
                         <li><a href="#nuestras-gomitas">Nuestras Gomitas</a></li>
                         <li><a href="#horarios">Horarios</a></li>
                         <li><a href="#precios">Precios</a></li>
+                        <li><a href="#inventario">Arma tu canasta</a></li>
                         <li><a href="#panel">Panel y Novedades</a></li>
-                        <li><a href="#comparativa">Comparativa jQuery</a></li>
-                        <li><a href="#remoto">Catálogo Remoto</a></li>
                         <li><a href="#pedido">Hacer Pedido</a></li>
-                        <li><a href="#preferencias">Preferencias</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- SECCIÓN PREFERENCIAS (gestionada por preferencias.js) -->
+    <dialog id="preferencias" class="seccion-preferencias" aria-labelledby="titulo-prefs">
+        <button type="button" id="cerrar-prefs" class="cerrar-prefs" aria-label="Cerrar">✕</button>
+        <h2 id="titulo-prefs">Preferencias del sitio</h2>
+        <p>Tus ajustes se guardan en el navegador y se recuperan la próxima vez que visites la página.</p>
+
+        <!-- Tema oscuro / claro -->
+        <div class="bloque-preferencia">
+            <h3>🎨 Apariencia</h3>
+            <button type="button" id="tema-toggle" aria-pressed="false">🌙 Modo oscuro</button>
+        </div>
+
+        <!-- Orden del catálogo -->
+        <div class="bloque-preferencia">
+            <h3>📋 Orden del catálogo</h3>
+            <label for="orden">Ordenar gomitas por:</label>
+            <select id="orden">
+                <option value="nombre">Nombre (A–Z)</option>
+                <option value="precio">Precio (menor a mayor)</option>
+                <option value="categoria">Categoría</option>
+            </select>
+        </div>
+
+        <!-- Estado y olvidar -->
+        <div class="bloque-preferencia">
+            <p id="estado-prefs" aria-live="polite"></p>
+            <p id="visitas-sesion"></p>
+            <button type="button" id="olvidar">🗑️ Olvidar mis preferencias</button>
+        </div>
+    </dialog>
 
     <main id="contenido">
         <!-- Inicio del div agregado para agrupar el contenido principal -->
@@ -174,6 +202,41 @@
                 </figure>
             </section>
 
+            <section id="inventario" class="seccion-canasta">
+                <h2>Arma tu canasta de gomitas</h2>
+                <p>Elige tus sabores favoritos, ajusta las cantidades y revisa el total antes de hacer tu pedido.</p>
+
+                <div class="constructor-canasta">
+                    <div id="catalogo-canasta" class="catalogo-canasta"></div>
+
+                    <section class="resumen-canasta" aria-labelledby="titulo-canasta">
+                        <div class="encabezado-canasta">
+                            <div>
+                                <h3 id="titulo-canasta">Tu canasta</h3>
+                                <p id="canasta-vacia">Todavía no agregaste productos.</p>
+                            </div>
+                            <button type="button" id="vaciar-canasta" class="boton-secundario" disabled>Vaciar canasta</button>
+                        </div>
+                        <ul id="lista-canasta" class="lista-canasta"></ul>
+                        <div class="totales-canasta">
+                            <p>Productos <span id="canasta-productos">0</span></p>
+                            <p>Unidades <span id="canasta-unidades">0</span></p>
+                            <p class="total-canasta">Total <strong id="canasta-total">Bs 0.00</strong></p>
+                        </div>
+                        <button type="button" id="enviar-canasta" class="boton-canasta" disabled>Hacer pedido por WhatsApp</button>
+                        <p id="estado-canasta" role="status" aria-live="polite"></p>
+                    </section>
+                </div>
+
+                <section class="seccion-bandeja" aria-labelledby="titulo-bandeja">
+                    <div class="encabezado-bandeja">
+                        <h3 id="titulo-bandeja">Tu canasta de gomitas</h3>
+                        <p><span id="unidades-bandeja">0</span> de 12 paquetes</p>
+                    </div>
+                    <div id="bandeja-canasta" class="bandeja-canasta" role="list" aria-label="Gomitas seleccionadas"></div>
+                </section>
+            </section>
+
             <!-- SECCIÓN PANEL INTERACTIVO (gestionada por jquery-panel.js) -->
             <section id="panel" class="seccion-panel">
                 <h2>Panel de Novedades y Preguntas Frecuentes</h2>
@@ -223,42 +286,6 @@
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- SECCIÓN COMPARATIVA VANILLA JS VS JQUERY (gestionada por jquery-comparado.js) -->
-            <section id="comparativa" class="seccion-comparativa">
-                <h2>Comparación: JavaScript Vanilla vs jQuery</h2>
-                <p>Prueba interactiva que demuestra la diferencia de sintaxis entre Vanilla JS y la librería jQuery:</p>
-
-                <div class="panel-comparativo">
-                    <div class="caja-comparativa">
-                        <h3>Manipulación con Vanilla JS</h3>
-                        <p id="salida-vanilla">Texto original en Vanilla JS</p>
-                        <button type="button" id="boton-vanilla">Alternar Resaltado (Vanilla)</button>
-                    </div>
-
-                    <div class="caja-comparativa">
-                        <h3>Manipulación con jQuery</h3>
-                        <p id="salida-jquery">Texto original en jQuery</p>
-                        <button type="button" id="boton-jquery">Alternar Resaltado (jQuery)</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN CATÁLOGO REMOTO (gestionada por remoto.js) -->
-            <section id="remoto" class="seccion-remota">
-                <h2>Carga Remota de Gomitas (Fetch, jQuery y JSON)</h2>
-                <p>Prueba interactiva de consumo asíncrono desde el archivo <code>datos.json</code> con manejo de estados:</p>
-
-                <div class="controles-remotos">
-                    <button type="button" id="cargar-fetch">Cargar con Fetch</button>
-                    <button type="button" id="cargar-jquery">Cargar con jQuery</button>
-                    <button type="button" id="cargar-roto">Probar Error (404)</button>
-                </div>
-
-                <p id="estado" class="estado-remoto info" role="status" aria-live="polite">Presiona un botón para cargar los datos del catálogo remoto.</p>
-
-                <div id="lista-remota" class="galeria-remota"></div>
             </section>
 
             <section id="pedido">
@@ -332,42 +359,15 @@
                 <div id="mensaje-pedido" role="status" aria-live="polite"></div>
             </section>
 
-            <!-- SECCIÓN PREFERENCIAS (gestionada por preferencias.js) -->
-            <section id="preferencias" class="seccion-preferencias">
-                <h2>Preferencias del sitio</h2>
-                <p>Tus ajustes se guardan en el navegador y se recuperan la próxima vez que visites la página.</p>
 
-                <!-- Tema oscuro / claro -->
+            <!-- SECCIÓN UBICACIÓN (gestionada por preferencias.js) -->
+            <section id="ubicacion" class="seccion-ubicacion">
                 <div class="bloque-preferencia">
-                    <h3>🎨 Apariencia</h3>
-                    <button type="button" id="tema-toggle" aria-pressed="false">🌙 Modo oscuro</button>
-                </div>
-
-                <!-- Orden del catálogo -->
-                <div class="bloque-preferencia">
-                    <h3>📋 Orden del catálogo</h3>
-                    <label for="orden">Ordenar gomitas por:</label>
-                    <select id="orden">
-                        <option value="nombre">Nombre (A–Z)</option>
-                        <option value="precio">Precio (menor a mayor)</option>
-                        <option value="categoria">Categoría</option>
-                    </select>
-                </div>
-
-                <!-- Geolocalización -->
-                <div class="bloque-preferencia">
-                    <h3>📍 ¿Dónde estás?</h3>
-                    <p>Calcula la distancia aproximada desde tu ubicación hasta el local.</p>
-                    <button type="button" id="ubicarme">Calcular distancia al local</button>
-                    <p id="estado-ubicacion" role="status" aria-live="polite"></p>
-                </div>
-
-                <!-- Estado y olvidar -->
-                <div class="bloque-preferencia">
-                    <p id="estado-prefs" aria-live="polite"></p>
-                    <p id="visitas-sesion"></p>
-                    <button type="button" id="olvidar">🗑️ Olvidar mis preferencias</button>
-                </div>
+            <h3>📍 ¿Dónde estás?</h3>
+            <p>Con tu permiso, calculamos la distancia aproximada y te mostramos cómo llegar al negocio.</p>
+            <button type="button" id="ubicarme">Calcular mi distancia y ver ruta</button>
+            <p id="estado-ubicacion" role="status" aria-live="polite"></p>
+        </div>
             </section>
 
         </div>
@@ -385,6 +385,7 @@
 
         <address>
             Av. Camino Viacha, La Paz<br>
+ 
             Lunes a Sábado: 09:00 a.m. - 06:00 p.m.<br>
             Teléfono:
             <a href="https://wa.me/59177541854" target="_blank" rel="noopener noreferrer">77541854</a>
@@ -399,15 +400,14 @@
     <script src="datos.js"></script>
     <script src="render.js"></script>
     <script src="eventos.js"></script>
+    <script src="tablero.js"></script>
     <script src="preferencias.js"></script>
 
-    <!-- Librería jQuery y scripts de prácticas con jQuery -->
+    <!-- Librería jQuery para el panel interactivo -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- Respaldo local: si el CDN falla (sin internet), se carga la copia de la carpeta lib -->
     <script>window.jQuery || document.write('<script src="lib/jquery-3.6.0.min.js"><\/script>');</script>
-    <script src="jquery-comparado.js"></script>
     <script src="jquery-panel.js"></script>
-    <script src="remoto.js"></script>
 
 </body>
 

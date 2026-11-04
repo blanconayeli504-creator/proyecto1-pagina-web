@@ -74,8 +74,8 @@ document.querySelector("#olvidar").addEventListener("click", () => {
 // por cualquier script en la misma página y no tiene fecha de expiración.
 
 // ── 6. GEOLOCATION ──────────────────────────────────────────────────────
-// Coordenadas del local: Av. Camino Viacha, La Paz, Bolivia
-const LOCAL = { lat: -16.5205, lng: -68.1946 };
+// Coordenadas exactas del negocio proporcionadas por el propietario
+const LOCAL = { lat: -16.5976720, lng: -68.2484980 };
 
 function distanciaKm(lat1, lng1, lat2, lng2) {
   const R = 6371;
@@ -105,8 +105,19 @@ document.querySelector("#ubicarme").addEventListener("click", () => {
     (position) => {
       const { latitude, longitude, accuracy } = position.coords;
       const km = distanciaKm(latitude, longitude, LOCAL.lat, LOCAL.lng);
-      $ubic.textContent =
-        `📍 Estás a ${km.toFixed(1)} km de Dulce Nube Leonel (precisión: ${Math.round(accuracy)} m).`;
+      const enlaceRuta = document.createElement("a");
+      enlaceRuta.href = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${LOCAL.lat},${LOCAL.lng}`;
+      enlaceRuta.target = "_blank";
+      enlaceRuta.rel = "noopener noreferrer";
+      enlaceRuta.textContent = "Abrir indicaciones en Google Maps";
+
+      $ubic.replaceChildren(
+        document.createTextNode(
+          `Estás aproximadamente a ${km.toFixed(1)} km en línea recta de Dulce Nube Leonel (precisión de ubicación: ${Math.round(accuracy)} m). `
+        ),
+        document.createElement("br"),
+        enlaceRuta
+      );
       $ubic.className = "ok";
     },
 
@@ -124,9 +135,9 @@ document.querySelector("#ubicarme").addEventListener("click", () => {
     },
 
     {
-      enableHighAccuracy: false,
-      timeout: 10000,
-      maximumAge: 300000,
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 60000,
     }
   );
 });
@@ -138,3 +149,21 @@ const $visitas = document.querySelector("#visitas-sesion");
 if ($visitas) {
   $visitas.textContent = `Páginas visitadas en esta sesión: ${visitas}`;
 }
+
+
+// ── 8. VENTANA DE PREFERENCIAS (abre con el botón superior) ─────────────
+const $btnPrefs = document.querySelector("#btn-preferencias");
+const $panelPrefs = document.querySelector("#preferencias");
+
+$btnPrefs.addEventListener("click", () => {
+  $panelPrefs.showModal();
+  $btnPrefs.setAttribute("aria-expanded", "true");
+});
+
+$panelPrefs.addEventListener("close", () => $btnPrefs.setAttribute("aria-expanded", "false"));
+document.querySelector("#cerrar-prefs").addEventListener("click", () => $panelPrefs.close());
+
+// Clic fuera de la ventana (en el fondo oscuro) también la cierra
+$panelPrefs.addEventListener("click", (event) => {
+  if (event.target === $panelPrefs) $panelPrefs.close();
+});

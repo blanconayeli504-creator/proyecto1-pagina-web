@@ -24,16 +24,25 @@ $("#acordeon").on("click", ".titulo", function () {
 // ── 3. LOS EFECTOS ──────────────────────────────────────────────────────
 
 // ── 4. .each() Y EL ESCALONADO ──────────────────────────────────────────
-$("#mostrar-avisos").on("click", function () {
-  $("#avisos li").each(function (indice) {
+const $botonAvisos = $("#mostrar-avisos");
+const $avisos = $("#avisos li");
 
-    $(this).stop(true, true).delay(indice * 120).fadeIn(250);
-  });
+$botonAvisos.attr("aria-expanded", "false").on("click", function () {
+  const mostrar = $(this).attr("aria-expanded") !== "true";
 
-  $(this).text("Ocultar avisos").off("click").on("click", function () {
-    $("#avisos li").stop(true, true).fadeOut(200);
-    $(this).text("Mostrar avisos");
-  });
+  $(this)
+    .attr("aria-expanded", String(mostrar))
+    .text(mostrar ? "Ocultar avisos" : "Mostrar avisos");
+
+  $avisos.stop(true, true);
+
+  if (mostrar) {
+    $avisos.hide().each(function (indice) {
+      $(this).delay(indice * 120).fadeIn(250);
+    });
+  } else {
+    $avisos.fadeOut(200);
+  }
 });
 
 // ── 5. .animate(), PARA LO QUE NO CUBRE UN EFECTO ───────────────────────

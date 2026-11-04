@@ -1,37 +1,64 @@
-# Dulce Nube Leonel - Sitio Web Oficial
+# Dulce Nube Leonel
 
-**Estudiante:** [Nayeli Blanco Miranda]
-**Cliente:** Dulce Nube Leonel (Gomitas artesanales)
+Sitio web para presentar los productos de gomitas artesanales del negocio Dulce Nube Leonel, mostrar precios y horarios, y ayudar a los clientes a preparar sus pedidos.
 
-## Qué resuelve
-El sitio web ayuda a la microempresa a mostrar sus gomitas artesanales de pulpa natural, informar sobre sus horarios de atención, publicar una tabla clara de precios y permitir que los clientes hagan sus pedidos en línea con un formulario sencillo.
+**Estudiante:** Nayeli Blanco Miranda  
+**Cliente:** Dulce Nube Leonel
 
-## Cómo está construido
-- **Semántica:** Usé etiquetas estructuradas de HTML5 como `<header>` para el título y la navegación con lista desordenada (`<ul>`, `<li>`, `<a>`), `<main>` para albergar el contenido principal, y un elemento contenedor `<div>` con la clase `contenido-bloque` para agrupar dinámicamente las secciones de la página. Dentro de él se encuentran `<section>` con identificadores específicos (`#nuestras-gomitas`, `#horarios`, `#precios`, `#pedido`), etiquetas `<article>` para la presentación individual de cada producto, una tabla (`<table>`, `<caption>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>`) para los precios junto con una imagen descriptiva (`<figure>`, `<img>`, `<figcaption>`), y un formulario estructurado con `<form>`, `<fieldset>`, `<legend>`, `<label>`, distintos tipos de `<input>`, `<select>`, `<textarea>` y casillas de verificación. Se completa con un `<aside>` para el bloque informativo ("¿Sabías?") y un `<footer>` con datos de contacto (`<address>`) y derechos reservados.
-- **Layout:** Usé **Flexbox** en el `<header>` y en la lista del menú (`nav ul`) para alinear y centrar los botones con `justify-content: center` y `flex-wrap: wrap`, y en los `<article>` para acomodar su contenido en columna de manera equilibrada. Usé **CSS Grid** en la sección `#productos` con `repeat(auto-fit, minmax(16rem, 1fr))` para las tarjetas de productos y en el diseño general del `body` mediante `grid-template-areas` y media queries para la distribución de los elementos.
-- **Diseño:** Elegí una paleta de tonos tierra definida mediante variables CSS en `:root` (`--color-principal: #a65b32` terracota, `--color-acento: #c87941`, `--color-fondo: #fbf8f5`, entre otros) para transmitir una identidad artesanal y natural. Para las fuentes utilicé tipografías del sistema (`system-ui`) garantizando legibilidad y un rendimiento óptimo.
+## Laboratorio 2: Eventos y jQuery
 
-## Cómo ejecutarlo (importante para la carga remota)
-La sección **Catálogo Remoto** usa `fetch()` y `$.getJSON()` para leer `datos.json`. Los navegadores bloquean esas peticiones cuando la página se abre con doble clic (`file://`), por eso antes "no funcionaba". Para verla funcionando de verdad hay que abrirla desde un servidor local:
+En este laboratorio se trabajó con eventos del navegador y con la librería jQuery:
 
-1. **Windows:** doble clic en `iniciar-servidor.bat` (requiere Python instalado).
-2. **Cualquier sistema:** en la carpeta del proyecto ejecutar `python servidor.py` y abrir http://localhost:8000
-3. **VS Code:** clic derecho en `index.html` > *Open with Live Server*, o la configuración *Open http://localhost:8000* de `.vscode/launch.json`.
+- `eventos.js`: búsqueda y filtros de productos, selección desde las tarjetas, validación del formulario y preparación del pedido para WhatsApp.
+- `jquery-panel.js`: menú móvil, preguntas frecuentes desplegables y avisos animados. El botón de avisos permite mostrar y ocultar la lista.
+- `jquery-comparado.js`: ejemplos que comparan la selección, modificación de contenido, eventos y clases con JavaScript Vanilla y jQuery.
 
-Si el sitio se abre con doble clic, el catálogo remoto muestra un aviso y carga los datos de respaldo de `datos.js` para que la sección no quede vacía.
+El archivo `jquery-comparado.js` se conserva como material del laboratorio, pero su sección demostrativa ya no aparece en la página y el archivo no se carga desde `index.html`.
 
-## Mejoras de la versión profesional
-- **Catálogo remoto corregido:** detecta `file://`, muestra mensajes claros y usa datos de respaldo; los estados (cargando, éxito, aviso y error 404) tienen estilo propio.
-- **jQuery con respaldo local:** si el CDN no carga (sin internet), se usa `lib/jquery-3.6.0.min.js`.
-- **Diseño:** portada con imagen, navegación en píldoras, tarjetas con fotos de cada producto (`img/min`, optimizadas de ~800 KB a ~80 KB), etiquetas de stock, tablas con filas alternadas y formulario en dos columnas.
-- **Pedidos:** el botón "Pedir ahora" elige el producto en el formulario; al enviar se muestra el total y un enlace para confirmar por WhatsApp.
-- **Detalles:** indicador "Abierto ahora / Cerrado" (hora de Bolivia), fecha mínima de entrega con hora local, enlace "Saltar al contenido", favicon y metadatos para compartir.
+## Laboratorio 3: Módulos e interacción
+
+Este laboratorio reúne los módulos de datos, preferencias e interacción desarrollados para el sitio:
+
+- `funciones.js`: variables del negocio, operaciones para calcular pedidos, descuentos, impuestos, funciones, cierres y estado de atención.
+- `datos.js`: catálogo de productos con precios, categorías, imágenes y existencias; también contiene ejemplos de arreglos, objetos y clases.
+- `render.js`: creación y actualización de las tarjetas de productos en la página.
+- `tablero.js`: catálogo para armar una canasta de hasta 12 paquetes. Actualiza cantidades y total, representa cada unidad en una bandeja visual y prepara el pedido para WhatsApp.
+- `preferencias.js`: guarda el tema y el orden del catálogo en el navegador; también permite calcular la distancia aproximada al negocio y abrir indicaciones en Google Maps. Para ello se solicita permiso de ubicación.
+- `remoto.js`: práctica de JSON, `fetch`, `async/await`, `$.getJSON` y promesas, con manejo de errores y datos de respaldo.
+- `datos.json`: catálogo en formato JSON usado por la práctica de carga remota.
+
+`remoto.js` y `datos.json` se conservan como parte del laboratorio. La sección de carga remota se retiró de la interfaz, por lo que `remoto.js` no se carga desde `index.html`.
+
+## Archivos principales
+
+- `index.html`: estructura y contenido de la página.
+- `estilos.css`: diseño adaptable, tarjetas, canasta y estilos para pantallas pequeñas.
+- `servidor.py` e `iniciar-servidor.bat`: servidor local para probar el sitio.
+- `jquery-panel.js`: único módulo de la práctica jQuery que se carga actualmente en la página.
+
+## Cómo ejecutar el proyecto
+
+En Windows, se puede iniciar con doble clic en `iniciar-servidor.bat` si Python está instalado. También se puede abrir una terminal en la carpeta del proyecto y ejecutar:
+
+```bash
+python servidor.py
+```
+
+Luego se abre [http://localhost:8000](http://localhost:8000). El servidor local también facilita el uso de la geolocalización, que requiere permiso del visitante y un contexto seguro como `localhost` o HTTPS.
+
+## Funciones visibles en la página
+
+- Catálogo con búsqueda y filtros por categoría.
+- Horarios, precios y estado de atención.
+- Canasta de productos con límite de 12 paquetes, cantidades, total y confirmación por WhatsApp.
+- Panel de avisos y preguntas frecuentes.
+- Formulario de pedido y preferencias de tema y orden.
+- Cálculo de distancia aproximada al negocio y acceso a indicaciones de Google Maps.
+
+Las secciones de comparación Vanilla/jQuery y carga remota se ocultaron de la página; sus archivos se mantienen como material de los laboratorios.
 
 ## Capturas
-![Escritorio](capturas/escritorio.png)
-![Móvil 375px](capturas/captura-movil.png)
 
-## Lo más difícil
-Lo que más me costó fue hacer que el sitio se adapte bien a diferentes pantallas sin que se desordene. Al principio, cuando ponía el menú en celulares, los botones se salían o quedaban apretados, lo cual arreglé agregando `flex-wrap: wrap` y `justify-content: center` en `nav ul` para que bajen solos y queden centrados. 
+![Versión de escritorio](capturas/escritorio.png)
 
-También tuve un problema con la sección del `<aside>` ("¿Sabías?"), porque en pantallas grandes el CSS Grid me lo mandaba hacia un lado en una segunda columna y se veía raro, pero yo quería que se mantenga abajo después del contenido principal. Lo resolví acomodando las `grid-template-areas` dentro del `@media (min-width: 60rem)` en una sola columna vertical (`cabecera`, `principal`, `lateral`, `pie`) para que todo fluya hacia abajo en orden.
+![Versión móvil](capturas/captura-movil.png)
