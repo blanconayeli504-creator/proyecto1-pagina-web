@@ -2,7 +2,7 @@
 const buscador = document.querySelector("#buscador");
 const filtros = document.querySelector("#filtros");
 const resultado = document.querySelector("#resultado");
-const formulario = document.querySelector("form");
+const formulario = document.querySelector("#pedido form");
 const mensajePedido = document.querySelector("#mensaje-pedido");
 
 let categoriaActiva = "todos";
@@ -16,6 +16,12 @@ function actualizar() {
   const visibles = productos
     .filter(p => categoriaActiva === "todos" || p.categoria === categoriaActiva)
     .filter(p => p.nombre.toLowerCase().includes(textoBuscado.toLowerCase()));
+
+  // Orden elegido en el panel de filtros (se guarda en preferencias.js)
+  const orden = document.querySelector("#orden")?.value;
+  if (orden === "precio") visibles.sort((a, b) => a.precio - b.precio);
+  else if (orden === "categoria") visibles.sort((a, b) => a.categoria.localeCompare(b.categoria) || a.nombre.localeCompare(b.nombre));
+  else visibles.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
   // Llamamos a la función render de tu otro archivo
   if (typeof render === "function") {

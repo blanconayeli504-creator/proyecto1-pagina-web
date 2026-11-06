@@ -38,7 +38,8 @@ function aplicarPreferencias() {
 
   const boton = document.querySelector("#tema-toggle");
   boton.setAttribute("aria-pressed", preferencias.tema === "oscuro");
-  boton.textContent = preferencias.tema === "oscuro" ? "🌞 Modo claro" : "🌙 Modo oscuro";
+  boton.querySelector(".tema-icono").textContent = preferencias.tema === "oscuro" ? "🌞" : "🌙";
+  boton.querySelector(".tema-etiqueta").textContent = preferencias.tema === "oscuro" ? "Modo claro" : "Modo oscuro";
 
   document.querySelector("#orden").value = preferencias.orden;
 
@@ -47,6 +48,7 @@ function aplicarPreferencias() {
 }
 
 aplicarPreferencias();
+if (typeof actualizar === "function") actualizar(); // aplica el orden guardado
 
 // ── 4. GUARDAR AL CAMBIAR ───────────────────────────────────────────────
 document.querySelector("#tema-toggle").addEventListener("click", () => {
@@ -59,12 +61,14 @@ document.querySelector("#orden").addEventListener("change", (event) => {
   preferencias.orden = event.target.value;
   guardarPreferencias(preferencias);
   aplicarPreferencias();
+  if (typeof actualizar === "function") actualizar();
 });
 
 document.querySelector("#olvidar").addEventListener("click", () => {
   localStorage.removeItem(CLAVE);
   preferencias = { ...PREFERENCIAS_POR_DEFECTO };
   aplicarPreferencias();
+  if (typeof actualizar === "function") actualizar();
   document.querySelector("#estado-prefs").textContent = "Preferencias olvidadas. Se usarán los valores por defecto.";
 });
 

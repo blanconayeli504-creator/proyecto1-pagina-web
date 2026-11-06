@@ -105,6 +105,8 @@ function actualizarCanasta() {
   document.querySelector("#unidades-bandeja").textContent = String(totalUnidades);
   document.querySelector("#vaciar-canasta").disabled = estaVacia;
   document.querySelector("#enviar-canasta").disabled = estaVacia;
+  const botonFormulario = document.querySelector("#pedido-formulario");
+  if (botonFormulario) botonFormulario.disabled = estaVacia;
 
   const unidadesSeleccionadas = [...canasta.entries()].flatMap(([nombre, cantidad]) => {
     const producto = productos.find((elemento) => elemento.nombre === nombre);

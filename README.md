@@ -62,3 +62,9 @@ Las secciones de comparación Vanilla/jQuery y carga remota se ocultaron de la p
 ![Versión de escritorio](capturas/escritorio.png)
 
 ![Versión móvil](capturas/captura-movil.png)
+
+## Barra superior, canasta y ubicación
+- **Barra superior (`interfaz.js`)**: buscador, panel desplegable de filtros (categoría y orden), botón "Limpiar filtros", interruptor de modo oscuro y botón de Preferencias. Queda pegada arriba al hacer scroll.
+- **Canasta**: dos formas de finalizar, WhatsApp (igual que antes) o formulario. Para que el formulario envíe los pedidos a un servicio real, escribe su dirección en `URL_PEDIDOS` (inicio de `interfaz.js`). Si queda vacío, el pedido se confirma en pantalla y se ofrece confirmarlo por WhatsApp.
+- **Ubicación**: tarjeta con mapa de Google (lat -16.5976720, lng -68.2484980) y botón "Cómo llegar". El mapa necesita internet para cargarse.
+

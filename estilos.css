@@ -1688,28 +1688,6 @@ body {
   padding: 0;
 }
 
-/* Botón fijo arriba a la derecha que abre el panel de preferencias */
-header {
-  position: relative;
-}
-
-.btn-preferencias {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  min-height: 0;
-  padding: 0.45rem 0.9rem;
-  font-size: 0.9rem;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 999px;
-}
-
-.btn-preferencias:hover,
-.btn-preferencias[aria-expanded="true"] {
-  background: #ffffff;
-  color: var(--color-principal-oscuro, #7d3f1d);
-}
 
 .seccion-preferencias h2 {
   margin-bottom: 0.5rem;
@@ -1803,5 +1781,728 @@ header {
 #olvidar:hover {
   background: var(--color-error);
   color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MEJORAS DE INTERFAZ: barra de herramientas, canasta, ubicación y efectos
+   (este bloque solo agrega estilos; no cambia los anteriores)
+   ═══════════════════════════════════════════════════════════════════════ */
+:root {
+  --alto-barra: 4rem;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+main section,
+footer {
+  scroll-margin-top: calc(var(--alto-barra) + 1rem);
+}
+
+/* En pantallas grandes el <body> era una cuadrícula; una barra "sticky" necesita el flujo normal
+   de la página para quedarse pegada arriba. El aspecto es el mismo (una sola columna). */
+@media (min-width: 60rem) {
+  body {
+    display: block;
+  }
+
+  main,
+  aside,
+  footer {
+    margin-top: var(--espacio-lg);
+  }
+}
+
+/* ── BARRA DE HERRAMIENTAS (pegada arriba) ─────────────────────────────── */
+.barra-herramientas {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--color-superficie) 90%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--borde);
+  transition: box-shadow 0.3s ease;
+}
+
+.barra-herramientas.con-sombra {
+  box-shadow: var(--sombra-fuerte);
+}
+
+.barra-interior {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0.6rem var(--espacio);
+}
+
+.barra-interior #buscador {
+  flex: 1 1 12rem;
+  min-width: 0;
+  width: auto;
+  padding-block: 0.6rem;
+}
+
+.barra-acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.btn-barra,
+.interruptor-tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.92rem;
+  background: var(--color-crema);
+  color: var(--color-texto);
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.btn-barra:hover,
+.btn-barra[aria-expanded="true"] {
+  background: var(--color-principal);
+  color: #ffffff;
+  border-color: var(--color-principal);
+}
+
+.btn-limpiar {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.btn-limpiar:hover {
+  background: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.contador-filtros {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background: var(--color-principal);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.btn-barra[aria-expanded="true"] .contador-filtros,
+.btn-barra:hover .contador-filtros {
+  background: #ffffff;
+  color: var(--color-principal);
+}
+
+/* Panel desplegable de filtros (flota sobre el contenido, no lo empuja) */
+.panel-filtros {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 2.5rem;
+  padding: 1rem max(var(--espacio), calc((100% - var(--ancho-max)) / 2 + var(--espacio))) 1.25rem;
+  background: var(--color-superficie);
+  border-bottom: 1px solid var(--borde);
+  box-shadow: var(--sombra-fuerte);
+  animation: desplegar 0.25s ease;
+}
+
+.grupo-filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.etiqueta-filtro {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-apagado);
+}
+
+.panel-filtros select {
+  width: auto;
+  min-width: 14rem;
+  cursor: pointer;
+}
+
+/* Línea con el número de resultados (antes era una tarjeta grande) */
+.controles-busqueda {
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+
+/* ── INTERRUPTOR DE MODO OSCURO ────────────────────────────────────────── */
+.interruptor-tema {
+  padding: 0.3rem 0.85rem 0.3rem 0.4rem;
+  font-weight: 600;
+}
+
+.interruptor-tema:hover {
+  background: var(--color-crema);
+  color: var(--color-texto);
+  border-color: var(--color-principal);
+}
+
+.tema-pista {
+  position: relative;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 1.65rem;
+  border-radius: 999px;
+  background: #d9c6b0;
+  transition: background-color 0.4s ease;
+}
+
+.tema-perilla {
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: #ffffff;
+  font-size: 0.78rem;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s cubic-bezier(0.5, 1.5, 0.5, 1);
+}
+
+.interruptor-tema[aria-pressed="true"] .tema-pista {
+  background: var(--color-principal);
+}
+
+.interruptor-tema[aria-pressed="true"] .tema-perilla {
+  transform: translateX(1.35rem);
+}
+
+/* Transición suave de todo el sitio al cambiar de tema */
+html.cambiando-tema *:not(.tema-perilla),
+html.cambiando-tema *:not(.tema-perilla)::before,
+html.cambiando-tema *:not(.tema-perilla)::after {
+  transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease,
+    box-shadow 0.45s ease, fill 0.45s ease !important;
+}
+
+/* ── CANASTA: DOS OPCIONES PARA FINALIZAR ──────────────────────────────── */
+.resumen-canasta {
+  top: calc(var(--alto-barra) + 1rem);
+}
+
+.opciones-pedido {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: var(--espacio);
+}
+
+.opciones-pedido .boton-canasta {
+  max-width: none;
+  margin: 0;
+  width: 100%;
+}
+
+#enviar-canasta {
+  background: #0f8a43;
+  border-color: #0f8a43;
+}
+
+#enviar-canasta:hover:not(:disabled) {
+  background: #0b6e35;
+}
+
+#enviar-canasta::before {
+  content: "💬 ";
+}
+
+.boton-formulario {
+  background: var(--color-superficie);
+  color: var(--color-principal);
+  border: 2px solid var(--color-principal);
+}
+
+.boton-formulario::before {
+  content: "📝 ";
+}
+
+.boton-formulario:hover:not(:disabled) {
+  background: var(--color-principal);
+  color: #ffffff;
+}
+
+.separador-opciones {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-apagado);
+}
+
+.separador-opciones::before,
+.separador-opciones::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--borde);
+}
+
+/* Ventanas (preferencias y formulario del pedido) */
+.dialogo-pedido {
+  position: fixed;
+  width: min(100% - 2rem, 34rem);
+  max-height: 90vh;
+  margin: auto;
+  padding: var(--espacio-lg);
+  overflow-y: auto;
+  color: var(--color-texto);
+  background: var(--color-superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-fuerte);
+}
+
+.dialogo-pedido h2 {
+  margin: 0 2rem 1rem 0;
+  font-size: 1.4rem;
+}
+
+.dialogo-pedido::backdrop,
+.seccion-preferencias::backdrop {
+  background: rgba(40, 20, 10, 0.6);
+  animation: aparecer 0.25s ease;
+}
+
+.dialogo-pedido[open],
+.seccion-preferencias[open] {
+  animation: subir 0.3s ease;
+}
+
+.cerrar-dialogo {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  min-height: 0;
+  padding: 0.3rem 0.65rem;
+  background: var(--color-suave);
+  color: var(--color-texto);
+  border-radius: 999px;
+}
+
+.resumen-dialogo {
+  margin-bottom: var(--espacio);
+  padding: 0.75rem 1rem;
+  background: var(--color-crema);
+  border: 1px dashed var(--borde);
+  border-radius: var(--radio-sm);
+}
+
+.resumen-dialogo ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resumen-dialogo li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.resumen-dialogo li strong,
+.total-dialogo strong {
+  white-space: nowrap;
+}
+
+.total-dialogo {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.6rem 0 0;
+  max-width: none;
+  font-size: 1.1rem;
+}
+
+.dialogo-pedido form p {
+  max-width: none;
+  margin: 0 0 0.85rem;
+}
+
+.dialogo-pedido form .aceptar {
+  margin-bottom: 1rem;
+}
+
+.dialogo-pedido form button[type="submit"] {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+#mensaje-dialogo:empty {
+  display: none;
+}
+
+#mensaje-dialogo {
+  margin-top: var(--espacio);
+}
+
+/* ── UBICACIÓN: TARJETA ESTILO GOOGLE MAPS ─────────────────────────────── */
+.tarjeta-mapa {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-fuerte);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.tarjeta-mapa:hover {
+  transform: translateY(-3px);
+}
+
+.mapa-marco {
+  position: relative;
+  min-height: 24rem;
+  /* Fondo tipo mapa mientras carga (o si no hay internet) */
+  background:
+    linear-gradient(115deg, transparent 46%, #ffffff 46% 48%, transparent 48%),
+    linear-gradient(25deg, transparent 58%, #f6e7a8 58% 61%, transparent 61%),
+    linear-gradient(0deg, transparent 68%, #cfe3f1 68% 80%, transparent 80%),
+    #e8eee2;
+}
+
+.mapa-marco iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+body.tema-oscuro .mapa-marco {
+  filter: invert(0.92) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+  transition: filter 0.4s ease;
+}
+
+.mapa-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.5rem;
+}
+
+.mapa-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.mapa-subtitulo {
+  margin: -0.6rem 0 0;
+  color: var(--color-apagado);
+}
+
+.mapa-datos {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mapa-datos li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.mapa-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.btn-mapa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-principal);
+  background: var(--color-superficie);
+  border: 2px solid var(--color-principal);
+  border-radius: 999px;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-mapa:hover {
+  background: var(--color-principal);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--sombra);
+}
+
+.btn-mapa-principal {
+  background: var(--color-principal);
+  color: #ffffff;
+}
+
+.btn-mapa-principal:hover {
+  background: var(--color-oscuro);
+  border-color: var(--color-oscuro);
+}
+
+.mapa-distancia {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--borde);
+}
+
+.mapa-distancia p {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  color: var(--color-apagado);
+}
+
+.mapa-distancia button {
+  min-height: 2.5rem;
+  background: transparent;
+  color: var(--color-principal);
+  border: 1px solid var(--color-principal);
+  font-size: 0.9rem;
+}
+
+.mapa-distancia button:hover {
+  background: var(--color-principal);
+  color: #ffffff;
+}
+
+.mapa-distancia #estado-ubicacion {
+  margin: 0.6rem 0 0;
+}
+
+/* ── EFECTOS: HOVER Y TRANSICIONES ─────────────────────────────────────── */
+button:not(:disabled):hover,
+.btn-pedir:hover,
+.btn-hero:hover {
+  box-shadow: 0 6px 16px rgba(74, 40, 20, 0.2);
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+button:not(:disabled):active {
+  transform: translateY(1px) scale(0.98);
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+nav > ul > li > a:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Las tarjetas aparecen una a una (también al filtrar) y reaccionan al mouse */
+.tarjeta {
+  animation: subir 0.5s ease backwards;
+}
+
+.tarjeta:nth-of-type(2) { animation-delay: 0.05s; }
+.tarjeta:nth-of-type(3) { animation-delay: 0.1s; }
+.tarjeta:nth-of-type(4) { animation-delay: 0.15s; }
+.tarjeta:nth-of-type(5) { animation-delay: 0.2s; }
+.tarjeta:nth-of-type(6) { animation-delay: 0.25s; }
+.tarjeta:nth-of-type(7) { animation-delay: 0.3s; }
+.tarjeta:nth-of-type(n + 8) { animation-delay: 0.35s; }
+
+.tarjeta:hover {
+  border-color: var(--color-acento);
+}
+
+.tarjeta h3 {
+  transition: color 0.25s ease;
+}
+
+.tarjeta:hover h3 {
+  color: var(--color-acento);
+}
+
+.btn-pedir:not(.btn-deshabilitado)::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 0.4rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-pedir:hover::after {
+  transform: translateX(5px);
+}
+
+.producto-canasta {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.producto-canasta:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-acento);
+  box-shadow: var(--sombra-fuerte);
+}
+
+.producto-canasta > img {
+  transition: transform 0.4s ease;
+}
+
+.producto-canasta:hover > img {
+  transform: scale(1.06);
+}
+
+.producto-canasta {
+  overflow: hidden;
+}
+
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.item-acordeon {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.item-acordeon:hover {
+  border-color: var(--color-acento);
+  box-shadow: var(--sombra);
+}
+
+.fila-canasta,
+.bloque-preferencia,
+#avisos li {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fila-canasta:hover,
+#avisos li:hover {
+  transform: translateX(3px);
+}
+
+/* Secciones que aparecen suavemente al hacer scroll (interfaz.js) */
+.revelar {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.revelar.revelado {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes subir {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes desplegar {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── RESPONSIVO ────────────────────────────────────────────────────────── */
+@media (max-width: 48rem) {
+  .tarjeta-mapa {
+    grid-template-columns: 1fr;
+  }
+
+  .mapa-marco {
+    min-height: 16rem;
+  }
+
+  .mapa-info {
+    padding: 1.1rem;
+  }
+}
+
+@media (max-width: 40rem) {
+  .barra-interior {
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .barra-acciones {
+    gap: 0.35rem;
+  }
+
+  /* En celular los botones muestran solo el icono (el texto sigue disponible para lectores de pantalla) */
+  .btn-texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .btn-barra {
+    padding: 0.4rem 0.7rem;
+  }
+
+  .interruptor-tema {
+    padding: 0.3rem;
+  }
+
+  .panel-filtros select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .grupo-filtro {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta,
+  .dialogo-pedido[open],
+  .seccion-preferencias[open],
+  .panel-filtros {
+    animation: none;
+  }
 }
 

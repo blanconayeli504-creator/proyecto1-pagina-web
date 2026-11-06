@@ -19,7 +19,6 @@
     <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
 
     <header>
-        <button type="button" id="btn-preferencias" class="btn-preferencias" aria-expanded="false" aria-controls="preferencias">⚙️ Preferencias</button>
         <h1>Dulce Nube Leonel</h1>
         <p>Gomitas artesanales desde 2010</p>
         <a class="btn-hero" href="#pedido">Hacer un pedido</a>
@@ -32,6 +31,7 @@
                 <li><a href="#inventario">Arma tu canasta</a></li>
                 <li><a href="#panel">Panel y Novedades</a></li>
                 <li><a href="#pedido">Hacer Pedido</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
 
@@ -47,6 +47,7 @@
                         <li><a href="#inventario">Arma tu canasta</a></li>
                         <li><a href="#panel">Panel y Novedades</a></li>
                         <li><a href="#pedido">Hacer Pedido</a></li>
+                        <li><a href="#ubicacion">Ubicación</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
@@ -54,28 +55,64 @@
         </nav>
     </header>
 
+    <!-- BARRA DE HERRAMIENTAS: búsqueda, filtros, modo oscuro y preferencias (gestionada por interfaz.js) -->
+    <div class="barra-herramientas" id="barra-herramientas">
+        <div class="barra-interior">
+            <input type="text" id="buscador" placeholder="Buscar gomita por nombre..." aria-label="Buscar gomita por nombre">
+
+            <div class="barra-acciones">
+                <button type="button" id="btn-filtros" class="btn-barra" aria-expanded="false" aria-controls="panel-filtros">
+                    <span aria-hidden="true">🎚️</span><span class="btn-texto">Filtros</span>
+                    <span id="contador-filtros" class="contador-filtros" hidden>0</span>
+                </button>
+
+                <button type="button" id="limpiar-filtros" class="btn-barra btn-limpiar" hidden>
+                    <span aria-hidden="true">✕</span><span class="btn-texto">Limpiar filtros</span>
+                </button>
+
+                <button type="button" id="tema-toggle" class="interruptor-tema" aria-pressed="false" aria-label="Cambiar entre modo claro y modo oscuro">
+                    <span class="tema-pista" aria-hidden="true"><span class="tema-perilla"><span class="tema-icono">🌙</span></span></span>
+                    <span class="tema-etiqueta btn-texto">Modo oscuro</span>
+                </button>
+
+                <button type="button" id="btn-preferencias" class="btn-barra" aria-expanded="false" aria-controls="preferencias" aria-label="Preferencias">
+                    <span aria-hidden="true">⚙️</span><span class="btn-texto">Preferencias</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Panel desplegable de filtros -->
+        <div id="panel-filtros" class="panel-filtros" hidden>
+            <div class="grupo-filtro">
+                <span class="etiqueta-filtro" id="etiqueta-categoria">Categoría</span>
+                <div id="filtros" role="group" aria-labelledby="etiqueta-categoria">
+                    <button type="button" class="activo" data-categoria="todos">Todos</button>
+                    <button type="button" data-categoria="frutales">Frutales</button>
+                    <button type="button" data-categoria="acidas">Ácidas</button>
+                    <button type="button" data-categoria="mixes">Mixes</button>
+                    <button type="button" data-categoria="picantes">Picantes</button>
+                    <button type="button" data-categoria="especiales">Especiales</button>
+                </div>
+            </div>
+
+            <div class="grupo-filtro">
+                <label for="orden" class="etiqueta-filtro">Ordenar por</label>
+                <select id="orden">
+                    <option value="nombre">Nombre (A–Z)</option>
+                    <option value="precio">Precio (menor a mayor)</option>
+                    <option value="categoria">Categoría</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <!-- SECCIÓN PREFERENCIAS (gestionada por preferencias.js) -->
     <dialog id="preferencias" class="seccion-preferencias" aria-labelledby="titulo-prefs">
         <button type="button" id="cerrar-prefs" class="cerrar-prefs" aria-label="Cerrar">✕</button>
         <h2 id="titulo-prefs">Preferencias del sitio</h2>
-        <p>Tus ajustes se guardan en el navegador y se recuperan la próxima vez que visites la página.</p>
+        <p>Tus ajustes (modo oscuro y orden del catálogo) se guardan en el navegador y se recuperan la próxima vez que visites la página.</p>
 
-        <!-- Tema oscuro / claro -->
-        <div class="bloque-preferencia">
-            <h3>🎨 Apariencia</h3>
-            <button type="button" id="tema-toggle" aria-pressed="false">🌙 Modo oscuro</button>
-        </div>
 
-        <!-- Orden del catálogo -->
-        <div class="bloque-preferencia">
-            <h3>📋 Orden del catálogo</h3>
-            <label for="orden">Ordenar gomitas por:</label>
-            <select id="orden">
-                <option value="nombre">Nombre (A–Z)</option>
-                <option value="precio">Precio (menor a mayor)</option>
-                <option value="categoria">Categoría</option>
-            </select>
-        </div>
 
         <!-- Estado y olvidar -->
         <div class="bloque-preferencia">
@@ -89,20 +126,10 @@
         <!-- Inicio del div agregado para agrupar el contenido principal -->
         <div class="contenido-bloque">
 
-            <!-- CONTROLES DE BÚSQUEDA Y FILTROS (gestionados por eventos.js) -->
+            <!-- RESULTADOS DEL CATÁLOGO (la búsqueda y los filtros están en la barra superior) -->
             <div class="controles-busqueda">
-                <input type="text" id="buscador" placeholder="Buscar gomita por nombre...">
-                <div id="filtros">
-                    <button type="button" class="activo" data-categoria="todos">Todos</button>
-                    <button type="button" data-categoria="frutales">Frutales</button>
-                    <button type="button" data-categoria="acidas">Ácidas</button>
-                    <button type="button" data-categoria="mixes">Mixes</button>
-                    <button type="button" data-categoria="picantes">Picantes</button>
-                    <button type="button" data-categoria="especiales">Especiales</button>
-                </div>
-                <p id="resultado"></p>
+                <p id="resultado" role="status" aria-live="polite"></p>
             </div>
-            <!-- FIN DE CONTROLES -->
 
             <section id="nuestras-gomitas">
                 <h2>Nuestras Gomitas</h2>
@@ -223,7 +250,11 @@
                             <p>Unidades <span id="canasta-unidades">0</span></p>
                             <p class="total-canasta">Total <strong id="canasta-total">Bs 0.00</strong></p>
                         </div>
-                        <button type="button" id="enviar-canasta" class="boton-canasta" disabled>Hacer pedido por WhatsApp</button>
+                        <div class="opciones-pedido">
+                            <button type="button" id="enviar-canasta" class="boton-canasta" disabled>Hacer pedido por WhatsApp</button>
+                            <span class="separador-opciones" aria-hidden="true">o</span>
+                            <button type="button" id="pedido-formulario" class="boton-canasta boton-formulario" disabled>Enviar pedido con formulario</button>
+                        </div>
                         <p id="estado-canasta" role="status" aria-live="polite"></p>
                     </section>
                 </div>
@@ -235,6 +266,48 @@
                     </div>
                     <div id="bandeja-canasta" class="bandeja-canasta" role="list" aria-label="Gomitas seleccionadas"></div>
                 </section>
+
+                <!-- Formulario para enviar la canasta (gestionado por interfaz.js) -->
+                <dialog id="dialogo-pedido" class="dialogo-pedido" aria-labelledby="titulo-dialogo-pedido">
+                    <button type="button" id="cerrar-dialogo-pedido" class="cerrar-dialogo" aria-label="Cerrar">✕</button>
+                    <h2 id="titulo-dialogo-pedido">Enviar mi pedido</h2>
+
+                    <div id="resumen-dialogo" class="resumen-dialogo"></div>
+
+                    <form id="form-canasta" novalidate>
+                        <p>
+                            <label for="fc-nombre">Nombre completo</label>
+                            <input type="text" id="fc-nombre" name="nombre" autocomplete="name" required>
+                        </p>
+                        <p>
+                            <label for="fc-telefono">Teléfono / WhatsApp</label>
+                            <input type="tel" id="fc-telefono" name="telefono" autocomplete="tel" inputmode="numeric" pattern="[0-9]{7,8}" title="7 u 8 dígitos, sin espacios" required>
+                        </p>
+                        <p>
+                            <label for="fc-email">Correo electrónico (opcional)</label>
+                            <input type="email" id="fc-email" name="email" autocomplete="email">
+                        </p>
+                        <p>
+                            <label for="fc-fecha">Fecha de entrega</label>
+                            <input type="date" id="fc-fecha" name="fecha" required>
+                        </p>
+                        <p>
+                            <label for="fc-direccion">Dirección o punto de entrega</label>
+                            <input type="text" id="fc-direccion" name="direccion" autocomplete="street-address" required>
+                        </p>
+                        <p>
+                            <label for="fc-notas">Alguna indicación (opcional)</label>
+                            <textarea id="fc-notas" name="notas" rows="2"></textarea>
+                        </p>
+                        <p class="aceptar">
+                            <input type="checkbox" id="fc-terminos" name="terminos" required>
+                            <label for="fc-terminos">Acepto que el pedido se confirma por teléfono</label>
+                        </p>
+                        <button type="submit" class="boton-canasta">Enviar pedido</button>
+                    </form>
+
+                    <div id="mensaje-dialogo" role="status" aria-live="polite"></div>
+                </dialog>
             </section>
 
             <!-- SECCIÓN PANEL INTERACTIVO (gestionada por jquery-panel.js) -->
@@ -360,14 +433,44 @@
             </section>
 
 
-            <!-- SECCIÓN UBICACIÓN (gestionada por preferencias.js) -->
-            <section id="ubicacion" class="seccion-ubicacion">
-                <div class="bloque-preferencia">
-            <h3>📍 ¿Dónde estás?</h3>
-            <p>Con tu permiso, calculamos la distancia aproximada y te mostramos cómo llegar al negocio.</p>
-            <button type="button" id="ubicarme">Calcular mi distancia y ver ruta</button>
-            <p id="estado-ubicacion" role="status" aria-live="polite"></p>
-        </div>
+            <!-- SECCIÓN UBICACIÓN (tarjeta estilo Google Maps; el botón "Calcular mi distancia" lo gestiona preferencias.js) -->
+            <section id="ubicacion" class="seccion-ubicacion" aria-labelledby="titulo-ubicacion">
+                <h2 id="titulo-ubicacion">Dónde encontrarnos</h2>
+
+                <article class="tarjeta-mapa">
+                    <div class="mapa-marco">
+                        <iframe
+                            title="Mapa de Dulce Nube Leonel en Google Maps"
+                            src="https://www.google.com/maps?q=-16.5976720,-68.2484980&z=16&output=embed"
+                            loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <div class="mapa-info">
+                        <h3>Dulce Nube Leonel</h3>
+                        <p class="mapa-subtitulo">Tienda de gomitas artesanales</p>
+                        <p id="estado-local" class="estado-tienda" hidden></p>
+
+                        <ul class="mapa-datos">
+                            <li><span aria-hidden="true">📍</span> Av. Camino Viacha, La Paz, Bolivia</li>
+                            <li><span aria-hidden="true">🕘</span> Lunes a Sábado: 09:00 a.m. - 06:00 p.m.</li>
+                            <li><span aria-hidden="true">📞</span> <a href="https://wa.me/59177541854" target="_blank" rel="noopener noreferrer">77541854</a></li>
+                        </ul>
+
+                        <div class="mapa-botones">
+                            <a class="btn-mapa btn-mapa-principal" id="como-llegar"
+                                href="https://www.google.com/maps/dir/?api=1&destination=-16.5976720,-68.2484980"
+                                target="_blank" rel="noopener noreferrer">🧭 Cómo llegar</a>
+                            <a class="btn-mapa" href="https://www.google.com/maps/search/?api=1&query=-16.5976720,-68.2484980"
+                                target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
+                        </div>
+
+                        <div class="mapa-distancia">
+                            <p>¿A qué distancia estás? Con tu permiso, calculamos la distancia aproximada.</p>
+                            <button type="button" id="ubicarme">Calcular mi distancia y ver ruta</button>
+                            <p id="estado-ubicacion" role="status" aria-live="polite"></p>
+                        </div>
+                    </div>
+                </article>
             </section>
 
         </div>
@@ -402,6 +505,7 @@
     <script src="eventos.js"></script>
     <script src="tablero.js"></script>
     <script src="preferencias.js"></script>
+    <script src="interfaz.js"></script>
 
     <!-- Librería jQuery para el panel interactivo -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
